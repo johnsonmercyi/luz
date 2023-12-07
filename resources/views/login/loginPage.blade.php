@@ -8,8 +8,9 @@
 
     <div class="loginFrame row center">
         <div class="col s12 offset-m2 m8 center" id="">
+            <center><h1>Luz Schools</h1></center>
             <div class="">
-                <h4 class="center">Login</h4>
+                <!--<h4 class="center">Login</h4>-->
                 <form>
                     <div class="input-container">
                         <input type="text" name="username" id="username" placeholder="USERNAME" />

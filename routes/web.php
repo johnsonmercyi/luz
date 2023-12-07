@@ -28,6 +28,10 @@ Route::view('contact', 'contact');
 
 Route::view('about', 'about');
 
+Route::get('/foo', function () {
+    Artisan::call('storage:link');
+});
+
 /**
  * The normal method of routing is ideal for passing data to the view
  *

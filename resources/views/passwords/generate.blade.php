@@ -10,6 +10,7 @@
         <div class="col s12 offset-m3 m4 input-field">
             <select id="classId" class="browser-default">
             <option value=""> Choose Class </option>
+            <option value="staff"> staff </option>
             @foreach($allClass as $classroom)
                 <option value="{{ $classroom->id }}">{{ $classroom->level.$classroom->suffix}}</option>
             @endforeach

@@ -264,23 +264,41 @@ class Schoolscontroller extends Controller
         return view('passwords.generate', compact('school', 'allClass'));
     }
 
-    public function generatePasswords(Request $request){
+    public function generatePasswords(Request $request){ 
         $data = $request->all();
         $returnArr = [];
+        $allStudents = [];
 
-        $allStudents = DB::table('class_students_list')->select('students.regNo', 'students.lastName', 'students.firstName')
-            ->leftJoin('students', 'class_students_list.student_id', '=', 'students.id')
+        if($data['class_id'] === "staff"){
+
+            $allStudents = DB::table('staff')->select('regNo', 'lastName', 'firstName')
             ->where([
-                ['class_students_list.school_id', $data['school_id']],
-                ['students.school_id', $data['school_id']],
-                ['class_students_list.academic_session_id', $data['academic_session_id']],
-                ['class_students_list.class_id', $data['class_id']],
-                ['class_students_list.status', "Active"],
+                ['staff.school_id', $data['school_id']],
+                ['staff.status', "1"],
             ])
             ->orderBy('lastName', 'ASC')
             ->get()->toArray();
+
+        } 
+        else
+        {
+            $allStudents = DB::table('class_students_list')->select('students.regNo', 'students.lastName', 'students.firstName')
+                ->leftJoin('students', 'class_students_list.student_id', '=', 'students.id')
+                ->where([
+                    ['class_students_list.school_id', $data['school_id']],
+                    ['students.school_id', $data['school_id']],
+                    ['class_students_list.academic_session_id', $data['academic_session_id']],
+                    ['class_students_list.class_id', $data['class_id']],
+                    ['class_students_list.status', "Active"],
+                ])
+                ->orderBy('lastName', 'ASC')
+                ->get()->toArray();
+            
+        }
+
         
         foreach ($allStudents as $key => $value) {
+
             $newPin = $data['randPin'][$key];
             DB::table('users')->updateOrInsert(
                 [
@@ -293,6 +311,7 @@ class Schoolscontroller extends Controller
             );
 
             $returnArr[] = ['name'=> $value->lastName.' '.$value->firstName , 'regNo' => $value->regNo, 'pin' => $newPin];
+            
         }
         
 
