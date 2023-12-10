@@ -21,6 +21,7 @@
     
     <div class='row'>
         <div class='col m7 s12'>
+          
             <h5><span id="countAssigned">{{count($assignedSubjects)}} </span>Assigned Subjects</h5>
             <table class=" display z-depth-1 mb-5 mt-5" id="assignedSubjectsTable">
                     <thead class="white-text colCode">

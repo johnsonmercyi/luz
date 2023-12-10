@@ -18,7 +18,7 @@
       <section class="header">
         <div class="school-name-logo-wrapper">
           <div class="logo">
-            <img width="100%" src="http://localhost:8000/storage/images/RTNPS/photo/school/schoolLogo_01_10_20_03_11_2022.jpg">
+            <img width="100%" src="http://127.0.0.1:8000/storage/images/LUZ/photo/school/schoolLogo_01_10_20_03_11_2022.jpg">
           </div>
           <div class="school-name-title-wrapper">
             <span class="school-name">
@@ -97,16 +97,16 @@
 
             <tr style="display: flex; flex-direction: column; align-items: flex-start;">
               @foreach($classTeachers as $key => $classTeacher)
-                <?php 
-                  $margin = "margin-bottom";
-                  if ($key) $margin = "margin-top";
-                ?>
-                <td class="item item-1 width_100" style="{{$margin}}: 0.5vw">
-                  <div class="label label-1" style="width: 18vw;">CLASS TEACHER {{$key + 1}}:</div>
-                  <div class="val val-1" style="width: 100%; text-align: left">
-                    {{$classTeacher ? $classTeacher->name : ""}}
-                  </div>
-                </td>
+              <?php
+              $margin = "margin-bottom";
+              if ($key) $margin = "margin-top";
+              ?>
+              <td class="item item-1 width_100" style="{{$margin}}: 0.5vw">
+                <div class="label label-1" style="width: 18vw;">CLASS TEACHER {{$key + 1}}:</div>
+                <div class="val val-1" style="width: 100%; text-align: left">
+                  {{$classTeacher ? $classTeacher->name : ""}}
+                </div>
+              </td>
               @endforeach
             </tr>
 
